@@ -445,13 +445,39 @@
 
               <div id="broker" class="row mb-5" style="display: none">
                 <div class="col-md-12 fv-row">
-                  <label class="fs-3 fw-semibold mb-2"
-                    >Broker ที่ให้บริการอยู่ในปัจจุบัน</label
+                  <label class="required fs-3 fw-semibold mb-2"
+                    >Broker ที่ใช้บริการอยู่ในปัจจุบัน</label
                   >
-                  <ol>
-                    <li class="fs-3">Exness</li>
-                    <li class="fs-3">XM</li>
-                  </ol>
+                  <div class="form-control form-control-transparent pb-0">
+                    <div class="form-check mb-3">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="broker_ib"
+                        id="broker_ib_exness"
+                        value="Exness"
+                      />
+                      <label
+                        for="broker_ib_exness"
+                        class="form-check-label text-gray-800 fs-3"
+                        >Exness</label
+                      >
+                    </div>
+                    <div class="form-check mb-0">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="broker_ib"
+                        id="broker_ib_xm"
+                        value="XM"
+                      />
+                      <label
+                        for="broker_ib_xm"
+                        class="form-check-label text-gray-800 fs-3"
+                        >XM</label
+                      >
+                    </div>
+                  </div>
                 </div>
                 <div class="col-md-12 fv-row">
                   <label class="required fs-3 fw-semibold mb-2"
@@ -575,6 +601,7 @@
             }) === 0
           ) {
             validation.disableValidator("period");
+            validation.disableValidator("broker_ib");
             validation.disableValidator("mt_account_number");
             validation.disableValidator("broker_social");
             $("#period").hide();
@@ -587,6 +614,7 @@
             }) === 0
           ) {
             validation.disableValidator("period");
+            validation.enableValidator("broker_ib");
             validation.enableValidator("mt_account_number");
             validation.disableValidator("broker_social");
             $("#period").hide();
@@ -599,6 +627,7 @@
             }) === 0
           ) {
             validation.enableValidator("period");
+            validation.disableValidator("broker_ib");
             validation.disableValidator("mt_account_number");
             validation.disableValidator("broker_social");
             $("#period").show();
@@ -611,6 +640,7 @@
             }) === 0
           ) {
             validation.disableValidator("period");
+            validation.disableValidator("broker_ib");
             validation.disableValidator("mt_account_number");
             validation.enableValidator("broker_social");
             $("#period").hide();
@@ -620,6 +650,7 @@
           }
         } else {
           validation.disableValidator("period");
+          validation.disableValidator("broker_ib");
           validation.disableValidator("mt_account_number");
           validation.disableValidator("broker_social");
           $("#period").hide();
@@ -776,6 +807,13 @@
               validators: {
                 notEmpty: {
                   message: "กรุณาเลือกระยะเวลาใช้บริการ",
+                },
+              },
+            },
+            broker_ib: {
+              validators: {
+                notEmpty: {
+                  message: "กรุณาเลือก Broker ที่ให้บริการ",
                 },
               },
             },
